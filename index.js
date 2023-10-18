@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 const uri = process.env.DATABASE_URI;
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -20,8 +21,8 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    const db = await client.db('taskmaster');
-    const tasksCollection = db.collection('tasks');
+    const db = await client.db('taskCollection');
+    const tasksCollection = db.collection('taskData');
 
     console.log('Successfully connected to MongoDB!');
 
