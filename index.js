@@ -3,7 +3,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
@@ -42,6 +42,7 @@ async function run() {
 
     app.post('/tasks', async (req, res) => {
       const newTask = req.body;
+      console.log(newTask)
 
       try {
         const result = await tasksCollection.insertOne(newTask);
